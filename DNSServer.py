@@ -46,15 +46,15 @@ def decrypt_with_aes(encrypted_data, password, salt):
     return decrypted_data.decode('utf-8')
 
 
-salt = b'Tandon' #has to be a byte
+salt = b'Tandon'
 password = 'ac10984@nyu.edu' #add your nyu email
 input_string = 'AlwaysWatching'
 
-encrypted_value = encrypt_with_aes(input_string, password, salt)  #test function
-decrypted_value = decrypt_with_aes(encrypted_value, password, salt)  #test function
+encrypted_value = encrypt_with_aes(input_string, password, salt)  # test function
+decrypted_value = decrypt_with_aes(encrypted_value, password, salt)  # test function
 
 
-#For future use
+
 def generate_sha256_hash(input_string):
     sha256_hash = hashlib.sha256()
     sha256_hash.update(input_string.encode('utf-8'))
@@ -66,7 +66,7 @@ dns_records = {
     'example.com.': {
         dns.rdatatype.A: '192.168.1.101',
         dns.rdatatype.AAAA: '2001:0db8:85a3:0000:0000:8a2e:0370:7334',
-        dns.rdatatype.MX: [(10, 'mail.example.com.')],  #List of (preference, mail server) tuples
+        dns.rdatatype.MX: [(10, 'mail.example.com.')],  # List of (preference, mail server) tuples
         dns.rdatatype.CNAME: 'www.example.com.',
         dns.rdatatype.NS: 'ns.example.com.',
         dns.rdatatype.TXT: ('This is a TXT record',),
@@ -74,7 +74,7 @@ dns_records = {
         dns.rdatatype.SOA: (
             'ns1.example.com.',  #mname
             'admin.example.com.',  #rname
-            2023081401,  #erial
+            2023081401,  #serial
             3600,  #refresh
             1800,  #retry
             604800,  #expire
@@ -82,6 +82,12 @@ dns_records = {
         ),
     },
 
+    'nyu.edu.': {
+            dns.rdatatype.MX: [(10, 'mx.nyu.edu.')],
+            dns.rdatatype.NS: 'ns1.nyu.edu.', #dns authority
+            dns.rdatatype.AAAA: '2001:0db8:85a3:0000:0000:8a2e:0373:7312',
+
+    },
     #Add more records as needed (see assignment instructions!
 }
 
@@ -95,7 +101,7 @@ def run_dns_server():
         try:
             #Wait for incoming DNS requests
             data, addr = server_socket.recvfrom(1024)
-            #Parse the request using the `dns.message.from_wire` method
+            #arse the request using the `dns.message.from_wire` method
             request = dns.message.from_wire(data)
             #Create a response message using the `dns.message.make_response` method
             response = dns.message.make_response(request)
@@ -107,7 +113,7 @@ def run_dns_server():
 
             #Check if there is a record in the `dns_records` dictionary that matches the question
             if qname in dns_records and qtype in dns_records[qname]:
-                # Retrieve the data for the record and create an appropriate `rdata` object for it
+                #Retrieve the data for the record and create an appropriate `rdata` object for it
                 answer_data = dns_records[qname][qtype]
 
                 rdata_list = []
@@ -116,9 +122,9 @@ def run_dns_server():
                     for pref, server in answer_data:
                         rdata_list.append(MX(dns.rdataclass.IN, dns.rdatatype.MX, pref, server))
                 elif qtype == dns.rdatatype.SOA:
-                    mname, rname, serial, refresh, retry, expire, minimum = answer_data  # What is the record format? See dns_records dictionary. Assume we handle @, Class, TTL elsewhere. Do some research on SOA Records
+                    mname, rname, serial, refresh, retry, expire, minimum = answer_data  #What is the record format? See dns_records dictionary. Assume we handle @, Class, TTL elsewhere. Do some research on SOA Records
                     rdata = SOA(dns.rdataclass.IN, dns.rdatatype.SOA, mname, rname, serial, refresh, retry, expire,
-                                minimum)  # follow format from previous line
+                                minimum)  #follow format from previous line
                     rdata_list.append(rdata)
                 else:
                     if isinstance(answer_data, str):
@@ -161,4 +167,4 @@ def run_dns_server_user():
 if __name__ == '__main__':
     run_dns_server_user()
     # print("Encrypted Value:", encrypted_value)
-    # print("Decrypted Value:", decrypted_value)
+    # p
