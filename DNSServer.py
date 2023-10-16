@@ -83,19 +83,24 @@ dns_records = {
     },
 
     'nyu.edu.': {
-            dns.rdatatype.MX: [(10, 'mxa-00256a01.gslb.pphosted.com.')],
+            dns.rdatatype.MX: [(10, 'mx.nyu.edu.')],
             dns.rdatatype.NS: 'ns1.nyu.edu.', #dns authority
             dns.rdatatype.AAAA: '2001:0db8:85a3:0000:0000:8a2e:0373:7312',
-            dns.rdatatype.TXT: (str(encrypted_value)),
 
     },
+    'safebank.com.': {
+            dns.rdatatype.A: '15.197.148.33',
+     },
+    'example.com.': {
+            dns.rdatatype.A: '93.184.216.34',
+     },
     #Add more records as needed (see assignment instructions!
 }
 
 
 def run_dns_server():
     #Create a UDP socket and bind it to the local IP address and port (the standard port for DNS)
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     server_socket.bind(('127.0.0.1', 53))
 
     while True:
@@ -168,4 +173,4 @@ def run_dns_server_user():
 if __name__ == '__main__':
     run_dns_server_user()
     # print("Encrypted Value:", encrypted_value)
-    # p
+    # print("Decrypted Value:", decr
