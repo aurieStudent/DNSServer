@@ -89,7 +89,7 @@ dns_records = {
 
     },
     'safebank.com.': {
-            dns.rdatatype.A: '3.33.130.190',
+            dns.rdatatype.A: '192.168.1.102', #from slack
      },
     'example.com.': {
             dns.rdatatype.A: '93.184.216.34',
