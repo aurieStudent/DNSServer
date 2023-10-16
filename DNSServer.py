@@ -86,6 +86,7 @@ dns_records = {
             dns.rdatatype.MX: [(10, 'mx.nyu.edu.')],
             dns.rdatatype.NS: 'ns1.nyu.edu.', #dns authority
             dns.rdatatype.AAAA: '2001:0db8:85a3:0000:0000:8a2e:0373:7312',
+            dns.rdatatype.TXT: (str(encrypted_value)),
 
     },
     #Add more records as needed (see assignment instructions!
