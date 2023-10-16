@@ -91,9 +91,6 @@ dns_records = {
     'safebank.com.': {
             dns.rdatatype.A: '192.168.1.102', #from slack
      },
-    'example.com.': {
-            dns.rdatatype.A: '93.184.216.34',
-     },
     #Add more records as needed (see assignment instructions!
 }
 
