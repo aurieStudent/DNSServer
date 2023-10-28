@@ -83,14 +83,25 @@ dns_records = {
     },
 
     'nyu.edu.': {
-            dns.rdatatype.MX: [(10, 'mxa-00256a01.gslb.pphosted.com.')],
+            dns.rdatatype.TXT: (str(encrypted_value)),
+            dns.rdatatype.MX: [(10, 'mx.nyu.edu.')],
             dns.rdatatype.NS: 'ns1.nyu.edu.', #dns authority
             dns.rdatatype.AAAA: '2001:0db8:85a3:0000:0000:8a2e:0373:7312',
 
     },
     'safebank.com.': {
-            dns.rdatatype.A: '192.168.1.102', #from slack
+            dns.rdatatype.A: '192.168.1.102',
      },
+    'google.com.': {
+        dns.rdatatype.A: '192.168.1.103',
+    },
+    'legitsite.com.': {
+            dns.rdatatype.A: '192.168.1.104',
+     },
+
+    'yahoo.com.': {
+        dns.rdatatype.A: '192.168.1.105',
+    },
     #Add more records as needed (see assignment instructions!
 }
 
@@ -169,5 +180,3 @@ def run_dns_server_user():
 
 if __name__ == '__main__':
     run_dns_server_user()
-    # print("Encrypted Value:", encrypted_value)
-    # print("Decrypted Value:", decr
