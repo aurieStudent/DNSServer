@@ -17,7 +17,7 @@ from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 import base64
-import ast #don't think this does anything
+import ast #This is Aurielle I am taking this course again and have approval to reuse this code.
 
 
 def generate_aes_key(password, salt):
